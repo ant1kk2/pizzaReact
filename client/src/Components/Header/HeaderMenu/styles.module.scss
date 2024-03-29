@@ -1,0 +1,15 @@
+.menu {
+  display: flex;
+  column-gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.link {
+  font-family: 'Comfortaa';
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 60px;
+  letter-spacing: 0.045em;
+  color: #666262;
+}

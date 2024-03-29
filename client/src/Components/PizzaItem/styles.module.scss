@@ -1,0 +1,107 @@
+.inactive {
+  pointer-events: none;
+  opacity: 0.6;
+}
+.pizza {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__imgContainer {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__cardTitle {
+    font-family: "Comfortaa";
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 31.5px;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__cardIngridients {
+    font-family: "Comfortaa";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.5px;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__cardPrice {
+    font-family: "Comfortaa";
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 21.5px;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fd6a00;
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+    span {
+      &:nth-child(2) {
+        color: #000000;
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  &__sizes {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  &__size {
+    font-size: 18px;
+    padding: 5px 30px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    &.active {
+      background: linear-gradient(
+        93.66deg,
+        #ff9839 7.09%,
+        #ffa666 99.99%,
+        #ffb885 100%
+      );
+      color: #ffffff;
+    }
+  }
+
+  &__cardBtn {
+    background: linear-gradient(
+      93.66deg,
+      #ff9839 7.09%,
+      #ffa666 99.99%,
+      #ffb885 100%
+    );
+    box-shadow: 2px 3px 5px 0px #ffac7180;
+    font-family: "Raleway";
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 34.5px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    padding: 22px 96px;
+    border-radius: 50px;
+    color: #ffffff;
+  }
+}
