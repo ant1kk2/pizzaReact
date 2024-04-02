@@ -15,10 +15,9 @@ const MenuPage = () => {
     setLoading(true);
     if (!pizzas.loading && !coffes.loading) {
       setLoading(false);
-      console.log(coffes);
     }
   }, [pizzas, coffes]);
-  
+
   return (
     <div className={styles.menuPage}>
       <div className={`container ${styles.container}`}>

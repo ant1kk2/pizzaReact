@@ -15,7 +15,6 @@ const MainPage = () => {
     setLoading(true);
     if (!pizzas.loading && !coffes.loading) {
       setLoading(false);
-      console.log(coffes);
     }
   }, [pizzas, coffes]);
 
