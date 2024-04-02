@@ -1,16 +1,30 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import "./../../styles/container.scss";
+import ModalAddToCartConfirm from "./../ModalAddToCartConfirm/ModalAddToCartConfirm.jsx";
+
 
 const CoffeItem = ({ coffe }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
+  const [isVisibleModal, setIsVisibleModal] = React.useState(false);
 
   const sizeClick = (index) => {
     setActiveIndex(index);
   };
 
+  function showCountModal() {
+    setIsVisibleModal(true);
+  }
+
   return (
     <li className={styles.coffe__item}>
+      {isVisibleModal && (
+        <ModalAddToCartConfirm
+          prod={coffe}
+          sizeIndex={activeIndex}
+          setIsVisibleModal={setIsVisibleModal}
+        />
+      )}
       <div className={styles.coffe__imgContainer}>
         <img className={styles.coffe__img} src={coffe.image} alt={coffe.alt} />
       </div>
@@ -30,9 +44,16 @@ const CoffeItem = ({ coffe }) => {
         })}
       </div>
       <p className={styles.coffe__cardPrice}>
-        <span>{`${coffe.oldPrice[activeIndex]} грн`}</span>
+        <span>{`${coffe.prices[activeIndex]} грн`}</span>
       </p>
-      <button className={styles.coffe__cardBtn}>Замовити</button>
+      <button
+        onClick={() => {
+          showCountModal();
+        }}
+        className={styles.coffe__cardBtn}
+      >
+        Замовити
+      </button>
     </li>
   );
 };

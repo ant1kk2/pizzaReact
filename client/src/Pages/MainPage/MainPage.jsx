@@ -1,14 +1,24 @@
 import React from "react";
 import "./../../styles/container.scss";
 import styles from "./styles.module.scss";
-
 import PizzaItem from "../../Components/PizzaItem/PizzaItem.jsx";
-import pizzas from "../../content/pizzas";
 
-import mainSlideImg_1 from "./../../assets/images/mainSlider/mainSlide-1.jpg";
-import coffes from "../../content/coffes.js";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
+  const pizzas = useSelector((state) => state.pizzas);
+  const coffes = useSelector((state) => state.coffes);
+
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setLoading(true);
+    if (!pizzas.loading && !coffes.loading) {
+      setLoading(false);
+      console.log(coffes);
+    }
+  }, [pizzas, coffes]);
+
   return (
     <div className={styles.mainPage}>
       <div className={`container ${styles.container}`}>
@@ -25,7 +35,7 @@ const MainPage = () => {
           <div className={styles.slide__imageContainer}>
             <img
               className={styles.slide__image}
-              src={mainSlideImg_1}
+              src="/assets/images/mainSlider/mainSlide-1.jpg"
               alt="slide image"
             />
           </div>
@@ -34,14 +44,23 @@ const MainPage = () => {
           <h3 className={styles.promotions__title}>
             Вигідні пропозиції цього тижня
           </h3>
-          <p className={styles.promotions__text}>Обирай маленьку піцу з кавою американо та отримуй знижку 10%
+          <p className={styles.promotions__text}>
+            Обирай маленьку піцу з кавою американо та отримуй знижку 10%
           </p>
           <div className={styles.promotions__cards}>
-            {pizzas.map((pizza, index) => {
-              if (pizza.isPromotions) {
-                return <PizzaItem coffe={coffes[0]} key={index} pizza={pizza} isPromotions={pizza.isPromotions}/>
-              } 
-            })}
+            {!loading &&
+              pizzas.pizzasList.map((pizza, index) => {
+                if (pizza.isPromotions) {
+                  return (
+                    <PizzaItem
+                      coffe={coffes.coffesList[0]}
+                      pizza={pizza}
+                      key={index}
+                      isPromotions={pizza.isPromotions}
+                    />
+                  );
+                }
+              })}
           </div>
         </div>
       </div>

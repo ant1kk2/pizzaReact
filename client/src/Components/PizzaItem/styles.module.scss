@@ -103,5 +103,12 @@
     padding: 22px 96px;
     border-radius: 50px;
     color: #ffffff;
+
+    &:hover{
+      background: #ffb885;
+    }
+    &:active{
+      background: #ff9839;
+    }
   }
 }

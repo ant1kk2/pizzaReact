@@ -1,12 +1,18 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import ModalAddToCartConfirm from "./../ModalAddToCartConfirm/ModalAddToCartConfirm.jsx";
 
 const PizzaItem = ({ pizza, coffe, isPromotions }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
+  const [isVisibleModal, setIsVisibleModal] = React.useState(false);
 
   const sizeClick = (index) => {
     setActiveIndex(index);
   };
+
+  function showCountModal() {
+    setIsVisibleModal(true);
+  }
 
   return (
     <li
@@ -14,6 +20,15 @@ const PizzaItem = ({ pizza, coffe, isPromotions }) => {
         pizza.availability ? "" : styles.inactive
       }`}
     >
+      {isVisibleModal && (
+        <ModalAddToCartConfirm
+          prod={pizza}
+          sizeIndex={activeIndex}
+          isPromotions={isPromotions}
+          setIsVisibleModal={setIsVisibleModal}
+        />
+      )}
+
       <div className={styles.pizza__imgContainer}>
         <img className={styles.pizza__img} src={pizza.image} alt={pizza.alt} />
       </div>
@@ -41,17 +56,24 @@ const PizzaItem = ({ pizza, coffe, isPromotions }) => {
         {isPromotions ? (
           <>
             <span>{`${
-              pizza.oldPrice[0] +
-              coffe.oldPrice[0] -
-              (pizza.oldPrice[0] + coffe.oldPrice[0]) * 0.1
+              pizza.prices[0] +
+              coffe.prices[0] -
+              (pizza.prices[0] + coffe.prices[0]) * 0.1
             } грн`}</span>{" "}
-            <span>{`${pizza.oldPrice[0] + coffe.oldPrice[0]} грн`}</span>
+            <span>{`${pizza.prices[0] + coffe.prices[0]} грн`}</span>
           </>
         ) : (
-          <span>{`${pizza.oldPrice[activeIndex]} грн`}</span>
+          <span>{`${pizza.prices[activeIndex]} грн`}</span>
         )}
       </p>
-      <button className={styles.pizza__cardBtn}>Замовити</button>
+      <button
+        onClick={() => {
+          showCountModal();
+        }}
+        className={styles.pizza__cardBtn}
+      >
+        Замовити
+      </button>
     </li>
   );
 };
