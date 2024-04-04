@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./styles.module.scss";
 
-import { discount } from "./../../content/pizzas.js";
 import ModalDelFromCartConfirm from "./../ModalDelFromCartConfirm/ModalDelFromCartConfirm.jsx";
 import { useSelector } from "react-redux";
 
 const CartItem = ({ item }) => {
   const coffes = useSelector((state) => state.coffes.coffesList);
+  const discount = useSelector((state) => state.pizzas.discount);
 
   const [isVisibleModal, setIsVisibleModal] = React.useState(false);
 
@@ -44,9 +44,11 @@ const CartItem = ({ item }) => {
       </div>
       <div className={styles.cart__price}>
         {item.isPromotions
-          ? `${(item.prices[0] * discount + coffes[0].prices[0] * discount)} * ${
+          ? `${(item.prices[0] + coffes[0].prices[0]) * discount} * ${
               item.count
-            } = ${(item.prices[0] * discount + coffes[0].prices[0] * discount) * item.count} грн`
+            } = ${
+              (item.prices[0] + coffes[0].prices[0]) * discount * item.count
+            } грн`
           : `${item.currentPrice} * ${item.count} = ${
               item.currentPrice * item.count
             } грн`}

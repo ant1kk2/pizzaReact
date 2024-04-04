@@ -1,1 +1,0 @@
-export const discount = 0.9

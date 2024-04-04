@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { readFile } from "fs/promises";
 import pizzas from "./pizzas.js";
 import coffes from "./coffes.js";
+import discount from "./discount.js";
 
 const f = fastify();
 
@@ -16,7 +17,7 @@ f.register(fastifyStatic, {
 });
 
 f.get("/pizzas", (request, reply) => {
-  reply.send(pizzas);
+  reply.send({pizzas, discount});
 });
 
 f.get("/coffes", (request, reply) => {

@@ -33,11 +33,19 @@ export const cartSlice = createSlice({
       ];
     },
     addProductsFromLocalStorage: (state, { payload }) => {
-      state.products =  payload
-    }
+      state.products = payload;
+    },
+    clearCart: (state, { payload }) => {
+      state.products = [];
+    },
   },
 });
 
-export const { addToCartProduct, delFromCartProduct, addProductsFromLocalStorage } = cartSlice.actions;
+export const {
+  addToCartProduct,
+  delFromCartProduct,
+  addProductsFromLocalStorage,
+  clearCart
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

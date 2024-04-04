@@ -17,6 +17,7 @@ const pizzasSlice = createSlice({
     pizzasList: [],
     loading: false,
     error: null,
+    discount: 1
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -26,7 +27,8 @@ const pizzasSlice = createSlice({
     });
     builder.addCase(fetchPizzas.fulfilled, (state, action) => {
       state.loading = false;
-      state.pizzasList = action.payload;
+      state.pizzasList = action.payload.pizzas;
+      state.discount = action.payload.discount;
     });
     builder.addCase(fetchPizzas.rejected, (state, action) => {
       state.loading = false;

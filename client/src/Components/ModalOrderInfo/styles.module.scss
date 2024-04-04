@@ -1,0 +1,84 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #a5a5a5a8;
+
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  &__title {
+    color: #000;
+    font-family: "Comfortaa";
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+
+  &__text {
+    color: #000;
+    font-family: "Comfortaa";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+
+  &__product {
+    width: 100%;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__productTitle,
+  &__productCount,
+  &__productPrice {
+    font-family: "Comfortaa";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  &__client {
+    font-family: "Comfortaa";
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  &__btn {
+    padding: 5px 10px;
+    color: #000;
+    font-family: "Comfortaa";
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 18px;
+    border-radius: 5px;
+    border: 1px solid #fd6a00;
+    transition: all 0.1s ease;
+    &:hover {
+      background-color: #e45f00;
+      color: #fff;
+    }
+    &:active {
+      background-color: #cb5500;
+      color: #fff;
+    }
+  }
+}

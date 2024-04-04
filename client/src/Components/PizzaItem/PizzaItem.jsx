@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import ModalAddToCartConfirm from "./../ModalAddToCartConfirm/ModalAddToCartConfirm.jsx";
+import { useSelector } from "react-redux";
 
 const PizzaItem = ({ pizza, coffe, isPromotions }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [isVisibleModal, setIsVisibleModal] = React.useState(false);
+  const discount = useSelector((state) => state.pizzas.discount);
 
   const sizeClick = (index) => {
     setActiveIndex(index);
@@ -56,9 +58,7 @@ const PizzaItem = ({ pizza, coffe, isPromotions }) => {
         {isPromotions ? (
           <>
             <span>{`${
-              pizza.prices[0] +
-              coffe.prices[0] -
-              (pizza.prices[0] + coffe.prices[0]) * 0.1
+              (pizza.prices[0] + coffe.prices[0]) * discount
             } грн`}</span>{" "}
             <span>{`${pizza.prices[0] + coffe.prices[0]} грн`}</span>
           </>

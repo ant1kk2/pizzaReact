@@ -3,7 +3,6 @@ import styles from "./styles.module.scss";
 import "./../../styles/container.scss";
 import ModalAddToCartConfirm from "./../ModalAddToCartConfirm/ModalAddToCartConfirm.jsx";
 
-
 const CoffeItem = ({ coffe }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [isVisibleModal, setIsVisibleModal] = React.useState(false);
