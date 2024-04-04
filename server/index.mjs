@@ -24,6 +24,17 @@ f.get("/coffes", (request, reply) => {
   reply.send(coffes);
 });
 
+f.post("/order", async (request, reply) => {
+  try {
+    const { body } = request;
+    console.log("Received order data:", body);
+    reply.send({ message: "Order received successfully" });
+  } catch (error) {
+    console.error("Error handling order:", error);
+    reply.code(500).send({ error: "Internal Server Error" });
+  }
+});
+
 f.setNotFoundHandler(async (request, reply) => {
   try {
     const indexHtml = await readFile(

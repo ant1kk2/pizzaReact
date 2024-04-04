@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import { useSelector } from "react-redux";
 
 const ModalSendForm = ({ setIsVisibleModal, showOrderInfo, setClientInfo }) => {
   const [isActivePickupBtn, setIsActivePickupBtn] = React.useState(false);
@@ -12,6 +13,8 @@ const ModalSendForm = ({ setIsVisibleModal, showOrderInfo, setClientInfo }) => {
   const [isValidSurnameField, setIsValidSurnameField] = React.useState(false);
   const [isValidTelField, setIsValidTelField] = React.useState(false);
   const [isValidAdressField, setIsValidAdressField] = React.useState(false);
+
+  const order = useSelector((state) => state.cart.products);
 
   const nameChange = (e) => {
     setIsValidNameField(false);
@@ -89,12 +92,41 @@ const ModalSendForm = ({ setIsVisibleModal, showOrderInfo, setClientInfo }) => {
       adress: adressValue,
       isDelivery: isActiveDeliveryBtn,
     });
+    sendOrderInfo();
     setIsVisibleModal(false);
     showOrderInfo(true);
   };
 
+  const sendOrderInfo = async () => {
+    const fullInfo = [
+      ...order,
+      {
+        name: nameValue,
+        surname: surnameValue,
+        tel: telValue,
+        deliveryMethod: isActiveDeliveryBtn ? "Доставка" : "Самовивіз",
+        adress: isActiveDeliveryBtn ? adressValue : "",
+      },
+    ];
+    try {
+      const response = await fetch("/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fullInfo),
+      });
+
+      if (!response.ok) {
+        throw new Error("Ошибка при отправке заказа");
+      }
+    } catch (error) {
+      console.error("Ошибка отправки заказа:", error);
+    }
+  };
+
   return (
-    <div  className={`${styles.modal}`}>
+    <div className={`${styles.modal}`}>
       <div className={styles.modal__container}>
         <label className={styles.modal__title} htmlFor="name">
           Імʼя
